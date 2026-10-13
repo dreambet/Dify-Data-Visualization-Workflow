@@ -11,9 +11,10 @@
   <img src="https://img.shields.io/badge/Docker-Compose-2496ED?style=flat-square" alt="Docker Compose">
   <img src="https://img.shields.io/badge/Python-3.10-3776AB?style=flat-square" alt="Python 3.10">
   <img src="https://img.shields.io/badge/ECharts-HTML_Reports-64748B?style=flat-square" alt="ECharts HTML Reports">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-64748B?style=flat-square" alt="MIT License"></a>
 </p>
 
-[项目概览](#overview) · [工作流程](#workflow) · [快速部署](#quick-start) · [故障排查](#troubleshooting)
+[项目概览](#overview) · [效果展示](#demo) · [工作流程](#workflow) · [快速部署](#quick-start) · [故障排查](#troubleshooting)
 
 </div>
 
@@ -35,6 +36,28 @@
 | 报告交付 | Flask 保存文件，返回浏览器可访问的 URL |
 
 > **项目状态**：核心链路已在 Dify 1.15.0 的本地 Docker 环境中排查与调试；本仓库为整理后的可复用配置，尚未提供自动化端到端验收结果。模型输出的数值和图表仍需根据原始数据复核。
+
+<a id="demo"></a>
+
+## 效果展示
+
+以下为实际 Dify 工作流与生成的 HTML 报告截图，非概念设计稿。
+
+### Dify Chatflow
+
+工作流先判断是否上传数据文件：文件分析分支依次完成文档提取、模型分析、HTML 提取和报告保存；没有文件时转入通用问答分支。
+
+![Dify Chatflow 工作流实测截图](docs/images/ChatGPT%20%E5%9B%BE%E5%83%8F%202026%E5%B9%B410%E6%9C%8813%E6%97%A5%2017_09_09.png)
+
+[查看工作流原图](docs/images/ChatGPT%20%E5%9B%BE%E5%83%8F%202026%E5%B9%B410%E6%9C%8813%E6%97%A5%2017_09_09.png)
+
+### HTML 数据分析看板
+
+报告以独立 HTML 页面呈现，示例包含趋势图、分类统计、占比图以及对应的业务分析结论。图表内容取决于上传数据和模型输出，并非固定模板。
+
+![实际生成的 HTML 数据分析看板](docs/images/ChatGPT%20%E5%9B%BE%E5%83%8F%202026%E5%B9%B410%E6%9C%8813%E6%97%A5%2017_09_22.png)
+
+[查看看板原图](docs/images/ChatGPT%20%E5%9B%BE%E5%83%8F%202026%E5%B9%B410%E6%9C%8813%E6%97%A5%2017_09_22.png)
 
 <a id="workflow"></a>
 
@@ -77,6 +100,8 @@ Dify-Data-Visualization-Workflow/
 ├── docker-compose.override.yaml  # 叠加至已有 Dify Compose
 ├── .env.example                   # 环境变量说明
 ├── .gitignore
+├── LICENSE
+├── docs/images/                   # 工作流与 HTML 看板实测截图
 ├── workflow/
 │   └── Excel 数据可视化分析.yml  # Dify Chatflow DSL
 └── static_files/
@@ -186,9 +211,9 @@ docker compose -f docker-compose.yaml -f docker-compose.override.yaml exec sandb
 - 是否向外部发送数据取决于你在 Dify 配置的模型服务商。使用第三方模型 API 时，表格提取内容可能传输到外部服务。
 - 生成文件位于 `static_files/`，该目录中的报告文件不应提交到 GitHub。
 
-## 许可状态
+## 开源许可
 
-本仓库当前**尚未包含 LICENSE 文件**。如果计划开放他人修改、再分发或商用，请由仓库维护者明确选择并添加许可证；README 不预设 MIT 或其他许可。
+本仓库的原创代码与文档以 [MIT License](LICENSE) 发布。Dify、Flask、ECharts 等第三方组件遵循各自的许可证；演示截图仅用于说明实际运行效果。
 
 ---
 
