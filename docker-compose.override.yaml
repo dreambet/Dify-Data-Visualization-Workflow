@@ -1,0 +1,20 @@
+# Copy next to the official Dify 1.15.0 docker-compose.yaml.
+# Use together with official Compose, never replace its services.
+services:
+  flask-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.flask
+    restart: unless-stopped
+    environment:
+      REPORT_PUBLIC_BASE_URL: ${REPORT_PUBLIC_BASE_URL:-http://localhost:5000}
+      MAX_HTML_BYTES: ${MAX_HTML_BYTES:-5242880}
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./static_files:/app/static_files
+    networks:
+      default: {}
+      ssrf_proxy_network:
+        aliases:
+          - flask-app
