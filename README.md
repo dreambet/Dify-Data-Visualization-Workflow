@@ -61,7 +61,7 @@
 
    在 sandbox 中运行 `getent hosts flask-app` 和 `curl http://flask-app:5000/health`。应解析到内网 IP 并得到 `{"status":"ok"}`。
 
-5. 在 Dify 工作室中 **导入 `workflow/Excel 数据可视化分析.yml`**；确认已安装依赖插件，重新配置两个 LLM 节点，检查“解析链接”代码节点使用 `http://dify_flash_server:5000/upload_html`。**如果你采用本仓库的增量 Compose 而没有设置 `dify_flash_server` 别名，应将此 URL 改成 `http://flask-app:5000/upload_html`。** 上传脱敏测试表格，测试生成的 HTML 链接。
+5. 从随附的发布包中取得 `workflow/Excel 数据可视化分析.yml`（此 DSL 文件尚待上传至 GitHub 仓库），然后在 Dify 工作室中**导入 DSL 文件**；确认已安装依赖插件，重新配置两个 LLM 节点，检查“解析链接”代码节点使用 `http://dify_flash_server:5000/upload_html`。**如果你采用本仓库的增量 Compose 而没有设置 `dify_flash_server` 别名，应将此 URL 改成 `http://flask-app:5000/upload_html`。** 上传脱敏测试表格，测试生成的 HTML 链接。
 
 ## 故障排查（来自实际部署经历）
 
