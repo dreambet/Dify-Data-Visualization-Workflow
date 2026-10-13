@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+static_files/*
+!static_files/.gitkeep
+volumes/
+__pycache__/
+*.pyc
+*.sql
+*.dump
+*.bak
+*.key
+*.pem
+.DS_Store
